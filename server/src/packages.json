@@ -1,0 +1,31 @@
+{
+	"packages": [
+		{
+			"id": 1,
+			"cost-per-pax": "300",
+			"flights": [
+				{
+					"price": 
+					"origin": {
+						"name": "Auckland",
+						"code": "AKL"
+					},
+					"destination": "WLG",
+					"departure": {
+						"date": "2016-01-03",
+						"time": "18:25"
+					},
+					
+					"departure-time": "18:25", 
+					"arrival-time": "2016-01-05T19:45"
+				}
+			],
+			"rental-car": {
+				"model": "Honda Jazz"
+			},
+			"hotel": {
+				"name": "Hilton Wellington"
+			}
+		}
+	]
+}
