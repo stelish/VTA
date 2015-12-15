@@ -100,6 +100,27 @@ app.controller('main',['$scope',function($scope){
 
                     ]
                 },
+                {
+                    "type" : "lunch",
+                    "options" : [
+                        {
+                            "vendor": "hertitage","currencySymbol":"$","currencyType":"NZD","price": "65","date": "26 Mar 2016",
+                            "departureTime": "0400","selected": "true", "bookingReference" : "abc123","destination" : "Auckland Domestic Terminal",
+                            "arrivalTime" : "0435", "travelTime" : "35"
+                        },
+                        {
+                            "vendor": "cheap cabs","currencySymbol":"$","currencyType":"NZD","price": "55","date": "26 Mar 2016",
+                            "time": "0400","selected": "false","bookingReference" : "abc123","destination" : "Auckland Domestic Terminal",
+                            "arrivalTime" : "0435", "travelTime" : "35"
+                        },
+                        {
+                            "vendor": "airport shuttles","currencySymbol":"$","currencyType":"NZD","price": "25","date": "26 Mar 2016",
+                            "time": "0400","selected": "false","bookingReference" : "abc123","destination" : "Auckland Domestic Terminal",
+                            "arrivalTime" : "0435", "travelTime" : "35"
+                        }
+
+                    ]
+                },
 
 
             ]
