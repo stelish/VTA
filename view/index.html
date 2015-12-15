@@ -3,9 +3,15 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Virtual Travel Agent</title>
+    <!-- Material Design fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="vendor/bootstrap-3.3.6-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="vendor/bootstrap-3.3.6-dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="vendor/bootstrap-material-design-master/dist/css/material-fullpalette.css">
+    <link rel="stylesheet" href="vendor/bootstrap-material-design-master/dist/css/ripples.min.css">
+    <link rel="stylesheet" href="vendor/angular-charts/angular-chart.min.css">
+    <link rel="stylesheet" href="vendor/bootstrap-material-datetimepicker-gh-pages/css/bootstrap-material-datetimepicker.css">
 
     <style>
         body{
@@ -38,77 +44,308 @@
             width: 100%;
             height: auto;
             background-color: #000;;
-
+            position: relative;
         }
         .status-bar{
             height: 65px;
             width: 100%;
             background-color: #222;
+            display: inline-flex;
         }
 
         .itinery-wrapper{
             display: inline-flex;
             width: 100%;
+            padding: 10px;
         }
 
         .itinery-list {
             width: 100%;
+            padding: 0;
         }
 
         .list-item {
             width: 100%;
             display: inline-flex;
+            margin-bottom: 5px;
         }
 
         .list-date {
             width: 20%;
             min-height: 100px;
         }
+
+        .list-date span{
+            margin-left: 12px;
+            font-size: 24px;
+        }
+
         .list-detail {
             border: solid 1px #eee;
             border-radius: 6px;
             padding: 10px;
             width: 80%;
             min-height: 80px;
+            display: inline-flex;
+        }
+
+        .list-detail-left {
+            width: 70%;
+            height: 100%;
+        }
+
+        .list-detail-right {
+            width: 30%;
+            height: 100%;
+        }
+
+        .list-detail h4{
+            margin-bottom: 0;
+        }
+
+        .itinery-header{
+            padding: 5px;
+        }
+        .choice-wrapper-left-btn{
+            position: absolute;
+            top: 80px;
+            color: #fff;
+            left: 20px;
+            z-index: 1000;
+            font-size: 32px;
+        }
+
+        .choice-wrapper-right-btn{
+            position: absolute;
+            top: 80px;
+            color: #fff;
+            right: 20px;
+            z-index: 1000;
+            font-size: 32px;
+        }
+
+        .itinery-time {
+            width:100%;
+        }
+
+        .itinery-time h4{
+            padding-left: 20px;
+        }
+
+        .itinery-icon{
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            color: white;
+            padding: 12px 15px;
+            margin: 0 auto;
+        }
+
+        .itinery-icon-purple{
+            background-color: purple;
+        }
+
+        .itinery-icon-orange{
+            background-color: orangered;
+        }
+
+        .itinery-icon-green {
+            background-color: #4DB6AC;
+        }
+
+        .itinery-icon-blue {
+            background-color: #4FC3F7;
+        }
+
+        .vta-brand{
+            float: right;
+            margin-top: -10px;
+            margin-right: 10px;
+        }
+
+        .nav-items{
+            margin-left: 10px;
+            float: left;
+            margin-top: -3px;
+        }
+
+        .itinery-change-btn{
+            background: none;
+            border: solid 1px #2196F3;
+            border-radius: 2px;
+            color: #2196F3;
+            margin-top: 5px;
+            padding: 5px 15px;
+            float: right;
+            font-weight: 200;
+        }
+        .itinery-number{
+            font-size: 12px;
+        }
+
+        .itinery-conditions {
+            font-size: 12px;
+            margin-top: 15px;
+        }
+
+        .itinery-choice-status{
+            display: inline-flex;
         }
 
     </style>
 </head>
 <body ng-controller="main">
+    <div id="mainBody" class="main-body">
+        <div class="main-header">
+            <div class="nav-items">
+                <div class="btn-group">
+                    <a href="javascript:void(0)" class="btn">product</a>
+                    <a href="bootstrap-elements.html" data-target="#" class="btn dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:void(0)">economy</a></li>
+                        <li><a href="javascript:void(0)">premium economy</a></li>
+                        <li><a href="javascript:void(0)">business</a></li>
+                        <li><a href="javascript:void(0)">first class</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <a href="javascript:void(0)" class="btn">passengers</a>
+                    <a href="bootstrap-elements.html" data-target="#" class="btn dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:void(0)">1 adult</a></li>
+                        <li><a href="javascript:void(0)">2 adults</a></li>
+                        <li><a href="javascript:void(0)">3 adults</a></li>
+                        <li><a href="javascript:void(0)">4 adults</a></li>
+                    </ul>
+                </div>
+            </div>
 
-<div id="mainBody" class="main-body">
-    <div class="main-header">
+            <div class="vta-brand">
+                <h2>VTA</h2>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="choice-wrapper">
+                <div class="choice-wrapper-left-btn"><span class="glyphicon glyphicon-menu-left"></span></div>
+                <div class="choice-wrapper-right-btn"><span class="glyphicon glyphicon-menu-right"></span></div>
+                <!--
+                -->
+            </div>
+            <div class="status-bar">
+                <div class="itinery-choice-status">
+                    <div class="itinery-choice-status-title"></div>
+                    <div class="itinery-choice-status-price"></div>
+                    <div class="itinery-choice-status-button"></div>
+                </div>
+            </div>
+            <div class="itinery-header">5 Jan 2016</div>
+            <div class="itinery-wrapper">
+                <ul class="itinery-list">
+                    <!-- transfer -->
+                    <li ng-repeat="item in itinery" class="list-item">
+                        <div class="list-date">
+                            <div class="itinery-time">
+                                <h4>04:30</h4>
+                            </div>
+                            <div class="itinery-icon itinery-icon-orange">
+                                <i class="material-icons">directions_bus</i>
+                            </div>
+                        </div>
+                        <div class="list-detail">
+                            <div class="list-detail-left">
+                                <h4>Home to Auckland Domestic Airport</h4>
+                                <div class="itinery-number">Booking ref: cust001</div>
+                                <div class="itinery-conditions">4 passenger max.</div>
+                            </div>
+                            <div class="list-detail-right">
+                                <button class="itinery-change-btn">change</button>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- flight -->
+                    <li ng-repeat="item in itinery" class="list-item">
+                        <div class="list-date">
+                            <div class="itinery-time">
+                                <h4>06:00</h4>
+                            </div>
+                            <div class="itinery-icon itinery-icon-purple">
+                                <i class="material-icons">flight_takeoff</i>
+                            </div>
+                        </div>
+                        <div class="list-detail">
+                            <div class="list-detail-left">
+                                <h4>Auckland to Queenstown</h4>
+                                <div class="itinery-number">NZ0619</div>
+                                <div class="itinery-conditions">1 adult, seat plus bag</div>
+                            </div>
+                            <div class="list-detail-right">
+                                <button class="itinery-change-btn">change</button>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- rental -->
+                    <li ng-repeat="item in itinery" class="list-item">
+                        <div class="list-date">
+                            <div class="itinery-time">
+                                <h4>07:35</h4>
+                            </div>
+                            <div class="itinery-icon itinery-icon-green">
+                                <i class="material-icons">directions_car</i>
+                            </div>
+                        </div>
+                        <div class="list-detail">
+                            <div class="list-detail-left">
+                                <h4>Rental Car Pickup Queenstown Airport</h4>
+                                <div class="itinery-number">Booking ref: cust001</div>
+                                <div class="itinery-conditions">4 door toyota corolla hatch</div>
+                            </div>
+                            <div class="list-detail-right">
+                                <button class="itinery-change-btn">change</button>
+                            </div>
+                        </div>
+                    </li>
 
+                    <!-- hotel -->
+                    <li ng-repeat="item in itinery" class="list-item">
+                        <div class="list-date">
+                            <div class="itinery-time">
+                                <h4>09:00</h4>
+                            </div>
+                            <div class="itinery-icon itinery-icon-blue">
+                                <i class="material-icons">hotel</i>
+                            </div>
+                        </div>
+                        <div class="list-detail">
+                            <div class="list-detail-left">
+                                <h4>Nomads Queenstown</h4>
+                                <div class="itinery-number">Booking ref: cust001</div>
+                                <div class="itinery-conditions">checkin 0900, Standard Room (ensuite) - Incl Light Breakfast</div>
+                            </div>
+                            <div class="list-detail-right">
+                                <button class="itinery-change-btn">change</button>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
     </div>
-    <div class="main-content">
-        <div class="choice-wrapper">
-            <img style="width:100%" src="https://www.google.co.nz/imgres?imgurl=http://www.smartmarketingthailand.com/blog/wp-content/uploads/2012/08/Depositphotos_6357651_M.jpg&imgrefurl=http://www.smartmarketingthailand.com/blog/how-get-more-customers-online-your-travel-agency-business/&h=1025&w=1952&tbnid=qjecvKDoq8k8qM:&docid=v39ZY5EVRuIw6M&ei=Q3dwVp6KKMXDmwXh066wAw&tbm=isch&ved=0ahUKEwjet9C-2d7JAhXF4aYKHeGpCzYQMwhPKBUwFQ">
-        </div>
-        <div class="status-bar">
 
-        </div>
-        <div class="itinery-wrapper">
-            <span>{{itinery.date}}</span>
-            <ul class="itinery-list">
-                <li ng-repeat="item in itinery" class="list-item">
-                    <div class="list-date">
-
-                    </div>
-                    <div class="list-detail">
-
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-    </div>
-</div>
-
-<script src="vendor/angular-1.4.7/angular.min.js"></script>
-<script src="vendor/jquery/jquery-1.11.3.min.js"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="vendor/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
-<script src="js/app.js"></script>
-<script src="js/main.js"></script>
+    <script src="vendor/angular-1.4.7/angular.min.js"></script>
+    <script src="vendor/jquery/jquery-1.11.3.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="vendor/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+    <script src="vendor/bootstrap-material-design-master/scripts/material.js"></script>
+    <script src="vendor/bootstrap-material-design-master/scripts/ripples.js"></script>
+    <script>
+        $.material.init();
+    </script>
+    <script src="vendor/bootstrap-material-datetimepicker-gh-pages/js/moment-with-locales.min.js"></script>
+    <script src="vendor/bootstrap-material-datetimepicker-gh-pages/js/bootstrap-material-datetimepicker.js"></script>
+    <script src="vendor/fastclick-master/lib/fastclick.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
