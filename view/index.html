@@ -2,16 +2,18 @@
 <html id="ng-app" ng-app="app">
 <head lang="en">
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Virtual Travel Agent</title>
     <!-- Material Design fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="vendor/bootstrap-3.3.6-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="vendor/bootstrap-material-design-master/dist/css/material-fullpalette.css">
-    <link rel="stylesheet" href="vendor/bootstrap-material-design-master/dist/css/ripples.min.css">
-    <link rel="stylesheet" href="vendor/angular-charts/angular-chart.min.css">
-    <link rel="stylesheet" href="vendor/bootstrap-material-datetimepicker-gh-pages/css/bootstrap-material-datetimepicker.css">
+    <link rel="stylesheet" href="/vendor/bootstrap-3.3.6-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendor/bootstrap-material-design-master/dist/css/material-fullpalette.css">
+    <link rel="stylesheet" href="/vendor/bootstrap-material-design-master/dist/css/ripples.min.css">
+    <link rel="stylesheet" href="/vendor/angular-charts/angular-chart.min.css">
+    <link rel="stylesheet" href="/vendor/bootstrap-material-datetimepicker-gh-pages/css/bootstrap-material-datetimepicker.css">
 
     <style>
         body{
@@ -45,12 +47,43 @@
             height: auto;
             background-color: #000;;
             position: relative;
+            overflow: hidden;
         }
+
+        .choice-wrapper-left-btn{
+            position: absolute;
+            top: 80px;
+            color: #fff;
+            left: 10px;
+            z-index: 1000;
+            font-size: 32px;
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255,0,0,0.4);
+            border-radius: 50%;
+            padding: 11px 13px;
+        }
+
+        .choice-wrapper-right-btn{
+            position: absolute;
+            top: 80px;
+            color: #fff;
+            right: 10px;
+            z-index: 1000;
+            font-size: 32px;
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255,0,0,0.4);
+            border-radius: 50%;
+            padding: 11px 13px;
+        }
+
         .status-bar{
             height: 65px;
             width: 100%;
             background-color: #222;
             display: inline-flex;
+            box-shadow: #aaa 2px 1px 20px 0;
         }
 
         .itinery-wrapper{
@@ -105,23 +138,7 @@
 
         .itinery-header{
             padding: 5px;
-        }
-        .choice-wrapper-left-btn{
-            position: absolute;
-            top: 80px;
-            color: #fff;
-            left: 20px;
-            z-index: 1000;
-            font-size: 32px;
-        }
-
-        .choice-wrapper-right-btn{
-            position: absolute;
-            top: 80px;
-            color: #fff;
-            right: 20px;
-            z-index: 1000;
-            font-size: 32px;
+            font-size: 20px;
         }
 
         .itinery-time {
@@ -159,7 +176,9 @@
 
         .itinery-icon-pink {
             background-color: #EC407A;
-        ;
+        }
+        .itinery-icon-brown {
+            background-color: #A1887F;
         }
 
         .vta-brand{
@@ -197,6 +216,117 @@
             display: inline-flex;
         }
 
+        .itinery-date-indicator{
+            list-style: none;
+        }
+        
+        .itinery-choice-gallery{
+            display:inline-flex;
+        }
+        
+        .itinery-choice-gallery-item{
+            min-width: 400px;
+            height: 250px;
+            background-image: url("/img/queenstown.jpg");
+            background-size: cover;
+            color: white;
+        }
+
+        .itinery-choice-gallery-item-indicator-wrapper{
+            display:inline-flex;
+            margin-left:150px;
+        }
+
+        .itinery-choice-gallery-item-indicator {
+            height: 7px;
+            width: 7px;
+            border-radius: 50%;
+            background-color: white;
+            margin: 0 5px;
+        }
+
+        .itinery-choice-gallery-item-indicator:first-child{
+            background-color: orange !important;
+        }
+
+        .gallery-price-wrapper {
+            display: inline-flex;
+        }
+
+        .gallery-title {
+            font-size: 24px;
+        }
+
+        .gallery-price{
+            font-size: 32px;
+        }
+
+        .selected-item {
+            color: #76FF03;
+            /* font-size: 48px; */
+            border: solid 2px #76FF03;
+            border-radius: 50%;
+            /* padding: 5px; */
+            width: 40px;
+            height: 40px;
+            float: right;
+            /* margin-right: 20px; */
+            margin-top: 10px;
+        }
+
+        .deselected-item {
+            color: #ccc;
+            /* font-size: 48px; */
+            border: solid 2px #ccc;
+            border-radius: 50%;
+            /* padding: 5px; */
+            width: 40px;
+            height: 40px;
+            float: right;
+            /* margin-right: 20px; */
+            margin-top: 10px;
+            margin-left:10px;
+        }
+        
+        .itinery-choice-status-title {
+            color: white;
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        
+        .itinery-choice-status-price {
+            color: white;
+            display: inline-flex;
+            margin-left: 20px;
+            margin-right: 20px;
+            margin-top: 20px;
+        }
+        
+        .price-dollar{
+            font-size: 14px;
+        }
+        .price-value{
+            font-size: 24px;
+            font-weight: 300;
+        }
+
+        .flipped{
+            -moz-transform: scale(-1, 1);
+            -webkit-transform: scale(-1, 1);
+            -o-transform: scale(-1, 1);
+            -ms-transform: scale(-1, 1);
+            transform: scale(-1, 1);
+        }
+
+        @media (min-width: 280px) and (max-width: 600px) {
+            .vta-brand{
+                margin-top:-3px;
+            }
+            .vta-brand h2{
+                font-size: 18px;
+            }
+        }
+
     </style>
 </head>
 <body ng-controller="main">
@@ -226,28 +356,71 @@
             </div>
 
             <div class="vta-brand">
-                <h2>VTA</h2>
+                <h2 class="hidden-xs">Virtual Travel Agent</h2>
+                <h2 class="hidden-sm hidden-md hidden-lg">VTA</h2>
             </div>
         </div>
         <div class="main-content">
             <div class="choice-wrapper">
                 <div class="choice-wrapper-left-btn"><span class="glyphicon glyphicon-menu-left"></span></div>
                 <div class="choice-wrapper-right-btn"><span class="glyphicon glyphicon-menu-right"></span></div>
-                <!--
-                -->
+                <!-- gallery -->
+                <ul class="itinery-choice-gallery">
+                    <li class="itinery-choice-gallery-item" ng-repeat="item in temp">
+                        <div style="margin-left: 20px;">
+                            <div class="gallery-title">Queenstown Base Package</div>
+                            <div class="gallery-price-wrapper">
+                                <small>from $</small>
+                                <div class="gallery-price">1,023</div>
+                            </div>
+                        </div>
+                        <a href="javascript:void(0)" class="btn btn-raised btn-success" style="margin-left: 110px;margin-top: 110px;">Buy this package</a>
+                    </li>
+                </ul>
+                <div>
+                    <ul class="itinery-choice-gallery-item-indicator-wrapper">
+                        <li ng-repeat="indicator in temp" class="itinery-choice-gallery-item-indicator">
+
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div class="status-bar">
                 <div class="itinery-choice-status">
-                    <div class="itinery-choice-status-title"></div>
-                    <div class="itinery-choice-status-price"></div>
-                    <div class="itinery-choice-status-button"></div>
+                    <div>
+                        <div style="display: inline-flex">
+                            <div class="itinery-choice-status-title"><b>Auckland</b> to <b>Queenstown</b></div>
+                            <div style="display: inline-flex; color: white; margin-left:20px">
+                                <i class="material-icons">flight_takeoff</i>
+                                <div style="margin-top: 5px;margin-left: 5px;">Tue 5 Jan 2016</div>
+                            </div>
+                        </div>
+                        <div style="display: inline-flex">
+                            <div class="itinery-choice-status-title"><b>Queenstown</b> to <b>Auckland</b></div>
+                            <div style="display: inline-flex; color: white; margin-left:20px">
+                                <i class="material-icons flipped">flight_takeoff</i>
+                                <div style="margin-top: 5px;margin-left: 5px;">Thu 7 Jan 2016</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="itinery-choice-status-button">
+                        <div class="itinery-choice-status-price">
+                            <div class="price-dollar">$</div>
+                            <div class="price-value">1023</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="itinery-header">5 Jan 2016</div>
             <div class="itinery-wrapper">
                 <ul class="itinery-list">
+                    <!-- date indicator -->
+                    <li class="itinery-date-indicator"><div class="itinery-header">5 Jan 2016</div></li>
+
                     <!-- transfer -->
-                    <li ng-repeat="item in itinery" class="list-item">
+                    <li class="list-item">
                         <div class="list-date">
                             <div class="itinery-time">
                                 <h4>04:30</h4>
@@ -264,11 +437,20 @@
                             </div>
                             <div class="list-detail-right">
                                 <button class="itinery-change-btn">change</button>
+                                <div style="display: inline-flex;float: right;">
+                                    <div class="selected-item">
+                                        <i class="material-icons" style="font-size: 32px;margin-left: 2px;margin-top: 2px;">check</i>
+                                    </div>
+                                    <div class="deselected-item">
+                                        <i class="material-icons" style="font-size: 32px;margin-left: 2px;margin-top: 2px;">clear</i>
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
                     </li>
                     <!-- flight -->
-                    <li ng-repeat="item in itinery" class="list-item">
+                    <li class="list-item">
                         <div class="list-date">
                             <div class="itinery-time">
                                 <h4>06:00</h4>
@@ -285,11 +467,19 @@
                             </div>
                             <div class="list-detail-right">
                                 <button class="itinery-change-btn">change</button>
+                                <div style="display: inline-flex;float: right;">
+                                    <div class="selected-item">
+                                        <i class="material-icons" style="font-size: 32px;margin-left: 2px;margin-top: 2px;">check</i>
+                                    </div>
+                                    <div class="deselected-item">
+                                        <i class="material-icons" style="font-size: 32px;margin-left: 2px;margin-top: 2px;">clear</i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </li>
                     <!-- rental -->
-                    <li ng-repeat="item in itinery" class="list-item">
+                    <li class="list-item">
                         <div class="list-date">
                             <div class="itinery-time">
                                 <h4>07:35</h4>
@@ -306,12 +496,20 @@
                             </div>
                             <div class="list-detail-right">
                                 <button class="itinery-change-btn">change</button>
+                                <div style="display: inline-flex;float: right;">
+                                    <div class="selected-item">
+                                        <i class="material-icons" style="font-size: 32px;margin-left: 2px;margin-top: 2px;">check</i>
+                                    </div>
+                                    <div class="deselected-item">
+                                        <i class="material-icons" style="font-size: 32px;margin-left: 2px;margin-top: 2px;">clear</i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </li>
 
                     <!-- hotel -->
-                    <li ng-repeat="item in itinery" class="list-item">
+                    <li class="list-item">
                         <div class="list-date">
                             <div class="itinery-time">
                                 <h4>09:00</h4>
@@ -328,16 +526,24 @@
                             </div>
                             <div class="list-detail-right">
                                 <button class="itinery-change-btn">change</button>
+                                <div style="display: inline-flex;float: right;">
+                                    <div class="selected-item">
+                                        <i class="material-icons" style="font-size: 32px;margin-left: 2px;margin-top: 2px;">check</i>
+                                    </div>
+                                    <div class="deselected-item">
+                                        <i class="material-icons" style="font-size: 32px;margin-left: 2px;margin-top: 2px;">clear</i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </li>
                     <!-- activity -->
-                    <li ng-repeat="item in itinery" class="list-item">
+                    <li class="list-item">
                         <div class="list-date">
                             <div class="itinery-time">
                                 <h4>14:00</h4>
                             </div>
-                            <div class="itinery-icon itinery-icon-blue">
+                            <div class="itinery-icon itinery-icon-pink">
                                 <i class="material-icons">star</i>
                             </div>
                         </div>
@@ -349,29 +555,249 @@
                             </div>
                             <div class="list-detail-right">
                                 <button class="itinery-change-btn">change</button>
+                                <div style="display: inline-flex;float: right;">
+                                    <div class="selected-item">
+                                        <i class="material-icons" style="font-size: 32px;margin-left: 2px;margin-top: 2px;">check</i>
+                                    </div>
+                                    <div class="deselected-item">
+                                        <i class="material-icons" style="font-size: 32px;margin-left: 2px;margin-top: 2px;">clear</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- dinning -->
+                    <li class="list-item">
+                        <div class="list-date">
+                            <div class="itinery-time">
+                                <h4>19:00</h4>
+                            </div>
+                            <div class="itinery-icon itinery-icon-brown">
+                                <i class="material-icons">local_dining</i>
+                            </div>
+                        </div>
+                        <div class="list-detail">
+                            <div class="list-detail-left">
+                                <h4>Amigos Bar & Grill Wanaka</h4>
+                                <div class="itinery-number">Booking ref: cust001</div>
+                                <div class="itinery-conditions">Nachos And Margarita Or Beer Valued At $26.80 - From ONLY $12</div>
+                            </div>
+                            <div class="list-detail-right">
+                                <button class="itinery-change-btn">change</button>
+                                <div style="display: inline-flex;float: right;">
+                                    <div class="selected-item">
+                                        <i class="material-icons" style="font-size: 32px;margin-left: 2px;margin-top: 2px;">check</i>
+                                    </div>
+                                    <div class="deselected-item">
+                                        <i class="material-icons" style="font-size: 32px;margin-left: 2px;margin-top: 2px;">clear</i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </li>
 
+                    <!-- date indicator -->
+                    <li class="itinery-date-indicator"><div class="itinery-header">6 Jan 2016</div></li>
+
+                    <!-- activity -->
+                    <li class="list-item">
+                        <div class="list-date">
+                            <div class="itinery-time">
+                                <h4>14:00</h4>
+                            </div>
+                            <div class="itinery-icon itinery-icon-pink">
+                                <i class="material-icons">star</i>
+                            </div>
+                        </div>
+                        <div class="list-detail">
+                            <div class="list-detail-left">
+                                <h4>Million Dollar Lake Cruise</h4>
+                                <div class="itinery-number">Booking ref: cust001</div>
+                                <div class="itinery-conditions">Departs 11:00am, Duration: 90mins</div>
+                            </div>
+                            <div class="list-detail-right">
+                                <button class="itinery-change-btn">change</button>
+                                <div style="display: inline-flex;float: right;">
+                                    <div class="selected-item">
+                                        <i class="material-icons" style="font-size: 32px;margin-left: 2px;margin-top: 2px;">check</i>
+                                    </div>
+                                    <div class="deselected-item">
+                                        <i class="material-icons" style="font-size: 32px;margin-left: 2px;margin-top: 2px;">clear</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- dinning -->
+                    <li class="list-item">
+                        <div class="list-date">
+                            <div class="itinery-time">
+                                <h4>19:00</h4>
+                            </div>
+                            <div class="itinery-icon itinery-icon-brown">
+                                <i class="material-icons">local_dining</i>
+                            </div>
+                        </div>
+                        <div class="list-detail">
+                            <div class="list-detail-left">
+                                <h4>Boliwood - Indian Banquet Feast - Queenstown</h4>
+                                <div class="itinery-number">Booking ref: cust001</div>
+                                <div class="itinery-conditions">Indian Banquet Feast Valued At $35 - From ONLY $17</div>
+                            </div>
+                            <div class="list-detail-right">
+                                <button class="itinery-change-btn">change</button>
+                                <div style="display: inline-flex;float: right;">
+                                    <div class="selected-item">
+                                        <i class="material-icons" style="font-size: 32px;margin-left: 2px;margin-top: 2px;">check</i>
+                                    </div>
+                                    <div class="deselected-item">
+                                        <i class="material-icons" style="font-size: 32px;margin-left: 2px;margin-top: 2px;">clear</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- date indicator -->
+                    <li class="itinery-date-indicator"><div class="itinery-header">7 Jan 2016</div></li>
+
+                    <!-- hotel -->
+                    <li class="list-item">
+                        <div class="list-date">
+                            <div class="itinery-time">
+                                <h4>09:00</h4>
+                            </div>
+                            <div class="itinery-icon itinery-icon-blue">
+                                <i class="material-icons">hotel</i>
+                            </div>
+                        </div>
+                        <div class="list-detail">
+                            <div class="list-detail-left">
+                                <h4>Checkout of Nomads Queenstown</h4>
+                                <div class="itinery-number">Booking ref: cust001</div>
+                                <div class="itinery-conditions">checkout 0900</div>
+                            </div>
+                            <div class="list-detail-right">
+                                <button class="itinery-change-btn">change</button>
+                                <div style="display: inline-flex;float: right;">
+                                    <div class="selected-item">
+                                        <i class="material-icons" style="font-size: 32px;margin-left: 2px;margin-top: 2px;">check</i>
+                                    </div>
+                                    <div class="deselected-item">
+                                        <i class="material-icons" style="font-size: 32px;margin-left: 2px;margin-top: 2px;">clear</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- rental -->
+                    <li class="list-item">
+                        <div class="list-date">
+                            <div class="itinery-time">
+                                <h4>09:30</h4>
+                            </div>
+                            <div class="itinery-icon itinery-icon-green">
+                                <i class="material-icons">directions_car</i>
+                            </div>
+                        </div>
+                        <div class="list-detail">
+                            <div class="list-detail-left">
+                                <h4>Rental Car Return Queenstown Airport</h4>
+                                <div class="itinery-number">Booking ref: cust001</div>
+                                <div class="itinery-conditions">4 door toyota corolla hatch</div>
+                            </div>
+                            <div class="list-detail-right">
+                                <button class="itinery-change-btn">change</button>
+                                <div style="display: inline-flex;float: right;">
+                                    <div class="selected-item">
+                                        <i class="material-icons" style="font-size: 32px;margin-left: 2px;margin-top: 2px;">check</i>
+                                    </div>
+                                    <div class="deselected-item">
+                                        <i class="material-icons" style="font-size: 32px;margin-left: 2px;margin-top: 2px;">clear</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- flight -->
+                    <li class="list-item">
+                        <div class="list-date">
+                            <div class="itinery-time">
+                                <h4>10:00</h4>
+                            </div>
+                            <div class="itinery-icon itinery-icon-purple">
+                                <i class="material-icons">flight_takeoff</i>
+                            </div>
+                        </div>
+                        <div class="list-detail">
+                            <div class="list-detail-left">
+                                <h4>Queenstown to Auckland</h4>
+                                <div class="itinery-number">NZ0619</div>
+                                <div class="itinery-conditions">1 adult, seat plus bag</div>
+                            </div>
+                            <div class="list-detail-right">
+                                <button class="itinery-change-btn">change</button>
+                                <div style="display: inline-flex;float: right;">
+                                    <div class="selected-item">
+                                        <i class="material-icons" style="font-size: 32px;margin-left: 2px;margin-top: 2px;">check</i>
+                                    </div>
+                                    <div class="deselected-item">
+                                        <i class="material-icons" style="font-size: 32px;margin-left: 2px;margin-top: 2px;">clear</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- transfer -->
+                    <li class="list-item">
+                        <div class="list-date">
+                            <div class="itinery-time">
+                                <h4>11:35</h4>
+                            </div>
+                            <div class="itinery-icon itinery-icon-orange">
+                                <i class="material-icons">directions_bus</i>
+                            </div>
+                        </div>
+                        <div class="list-detail">
+                            <div class="list-detail-left">
+                                <h4>Auckland Domestic Airport to Home</h4>
+                                <div class="itinery-number">Booking ref: cust001</div>
+                                <div class="itinery-conditions">4 passenger max.</div>
+                            </div>
+                            <div class="list-detail-right">
+                                <button class="itinery-change-btn">change</button>
+                                <div style="display: inline-flex;float: right;">
+                                    <div class="selected-item">
+                                        <i class="material-icons" style="font-size: 32px;margin-left: 2px;margin-top: 2px;">check</i>
+                                    </div>
+                                    <div class="deselected-item">
+                                        <i class="material-icons" style="font-size: 32px;margin-left: 2px;margin-top: 2px;">clear</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </div>
 
         </div>
     </div>
 
-    <script src="vendor/angular-1.4.7/angular.min.js"></script>
-    <script src="vendor/jquery/jquery-1.11.3.min.js"></script>
+    <script src="/vendor/angular-1.4.7/angular.min.js"></script>
+    <script src="/vendor/jquery/jquery-1.11.3.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
-    <script src="vendor/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
-    <script src="vendor/bootstrap-material-design-master/scripts/material.js"></script>
-    <script src="vendor/bootstrap-material-design-master/scripts/ripples.js"></script>
+    <script src="/vendor/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+    <script src="/vendor/bootstrap-material-design-master/scripts/material.js"></script>
+    <script src="/vendor/bootstrap-material-design-master/scripts/ripples.js"></script>
     <script>
         $.material.init();
     </script>
-    <script src="vendor/bootstrap-material-datetimepicker-gh-pages/js/moment-with-locales.min.js"></script>
-    <script src="vendor/bootstrap-material-datetimepicker-gh-pages/js/bootstrap-material-datetimepicker.js"></script>
-    <script src="vendor/fastclick-master/lib/fastclick.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/main.js"></script>
+    <script src="/vendor/bootstrap-material-datetimepicker-gh-pages/js/moment-with-locales.min.js"></script>
+    <script src="/vendor/bootstrap-material-datetimepicker-gh-pages/js/bootstrap-material-datetimepicker.js"></script>
+    <script src="/vendor/fastclick-master/lib/fastclick.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/main.js"></script>
 </body>
 </html>

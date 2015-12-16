@@ -31,11 +31,11 @@ public class Service {
     	
     	public MyHandler() {
     		InputStream is = MyHandler.class.getResourceAsStream("packages.json");
-			json = new Scanner(is).useDelimiter("\\Z").next();
+			//json = new Scanner(is).useDelimiter("\\Z").next();
     	}
     	
         public void handle(HttpExchange t) throws IOException {
-            String response = json; //"This is the response";
+            String response = "Hello"; //"This is the response";
             
             t.getResponseHeaders().add("Content-Type", "application/json");
             
