@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html id="ng-app" ng-app="app">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Virtual Travel Agent</title>
+    <!-- Material Design fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="vendor/bootstrap-3.3.6-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/bootstrap-material-design-master/dist/css/material-fullpalette.css">
+    <link rel="stylesheet" href="vendor/bootstrap-material-design-master/dist/css/ripples.min.css">
+    <link rel="stylesheet" href="vendor/angular-charts/angular-chart.min.css">
+    <link rel="stylesheet" href="vendor/bootstrap-material-datetimepicker-gh-pages/css/bootstrap-material-datetimepicker.css">
+
+    <style>
+        body{
+            background-color: #eee;
+        }
+
+        .vta-brand{
+            float: right;
+            margin-top: -10px;
+            margin-right: 10px;
+        }
+
+        .nav-items{
+            margin-left: 10px;
+            float: left;
+            margin-top: -3px;
+        }
+
+        .main-header {
+            width: 100%;
+            min-height: 50px;
+            background-color: white;
+            box-shadow: #ccc 2px 0 12px 0;
+        }
+
+        .main-body{
+            width: 100%;
+            height: 100%;
+        }
+
+        .main-content{
+            max-width: 480px;
+            height: 100%;
+            margin: 0 auto;
+            background-color: #fff;
+            min-height: 600px;
+            margin-top: 20px;
+        }
+
+        td {
+        	padding: 5px;
+        }
+        
+        .cc-form-wrapper {
+        	text-align: center;
+        }
+
+    </style>
+</head>
+<body ng-controller="main">
+    <div id="mainBody" class="main-body">
+        <div class="main-header">
+            <div class="nav-items">
+                <!--
+                <div class="btn-group">
+                    <a href="javascript:void(0)" class="btn">product</a>
+                    <a href="bootstrap-elements.html" data-target="#" class="btn dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:void(0)">economy</a></li>
+                        <li><a href="javascript:void(0)">premium economy</a></li>
+                        <li><a href="javascript:void(0)">business</a></li>
+                        <li><a href="javascript:void(0)">first class</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <a href="javascript:void(0)" class="btn">passengers</a>
+                    <a href="bootstrap-elements.html" data-target="#" class="btn dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:void(0)">1 adult</a></li>
+                        <li><a href="javascript:void(0)">2 adults</a></li>
+                        <li><a href="javascript:void(0)">3 adults</a></li>
+                        <li><a href="javascript:void(0)">4 adults</a></li>
+                    </ul>
+                </div>
+                -->
+            </div>
+
+            <div class="vta-brand">
+                <h2>VTA</h2>
+            </div>
+        </div>
+        <div class="main-content">
+        	<h1>Payment</h1>
+        	
+        	
+        	<h2>Credit Card details</h2>
+        	
+        	<div class="cc-form-wrapper">
+        	
+        	<table id="ContentPlaceHolder1_Table1">
+        	<tbody><tr>
+		<td align="right">Credit Card Number</td><td align="left"><input name="ctl00$ContentPlaceHolder1$txtCcNum" type="text" maxlength="16" id="ContentPlaceHolder1_txtCcNum" autocomplete="off" style="cursor: auto; background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QsPDhss3LcOZQAAAU5JREFUOMvdkzFLA0EQhd/bO7iIYmklaCUopLAQA6KNaawt9BeIgnUwLHPJRchfEBR7CyGWgiDY2SlIQBT/gDaCoGDudiy8SLwkBiwz1c7y+GZ25i0wnFEqlSZFZKGdi8iiiOR7aU32QkR2c7ncPcljAARAkgckb8IwrGf1fg/oJ8lRAHkR2VDVmOQ8AKjqY1bMHgCGYXhFchnAg6omJGcBXEZRtNoXYK2dMsaMt1qtD9/3p40x5yS9tHICYF1Vn0mOxXH8Uq/Xb389wff9PQDbQRB0t/QNOiPZ1h4B2MoO0fxnYz8dOOcOVbWhqq8kJzzPa3RAXZIkawCenHMjJN/+GiIqlcoFgKKq3pEMAMwAuCa5VK1W3SAfbAIopum+cy5KzwXn3M5AI6XVYlVt1mq1U8/zTlS1CeC9j2+6o1wuz1lrVzpWXLDWTg3pz/0CQnd2Jos49xUAAAAASUVORK5CYII=); background-attachment: scroll; background-position: 100% 50%; background-repeat: no-repeat;"></td>
+	</tr><tr>
+		<td align="right">Card Expiry Date</td><td align="left"><input name="ctl00$ContentPlaceHolder1$txtExpMth" type="text" maxlength="2" id="ContentPlaceHolder1_txtExpMth" style="width:36px;">/<input name="ctl00$ContentPlaceHolder1$txtExpYr" type="text" maxlength="2" id="ContentPlaceHolder1_txtExpYr" style="width:36px;"></td>
+	</tr><tr>
+		<td align="right">Name on Card</td><td align="left"><input name="ctl00$ContentPlaceHolder1$txtCardName" type="text" id="ContentPlaceHolder1_txtCardName"></td>
+	</tr><tr>
+		<td align="right">Card Security Code</td><td align="left"><input name="ctl00$ContentPlaceHolder1$txtCvc" type="text" maxlength="4" id="ContentPlaceHolder1_txtCvc" style="width:60px;"></td>
+	</tr><tr>
+		<td colspan="2" style="text-align: center">
+		<input type="submit" name="ctl00$ContentPlaceHolder1$btnSubmit" value="Pay" id="ContentPlaceHolder1_btnSubmit" style="align:center"/>
+		</td>
+	</tr>
+</tbody></table>
+
+		</div>
+
+        </div>
+    </div>
+
+    <script src="vendor/angular-1.4.7/angular.min.js"></script>
+    <script src="vendor/jquery/jquery-1.11.3.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="vendor/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+    <script src="vendor/bootstrap-material-design-master/scripts/material.js"></script>
+    <script src="vendor/bootstrap-material-design-master/scripts/ripples.js"></script>
+    <script>
+        $.material.init();
+    </script>
+    <script src="vendor/bootstrap-material-datetimepicker-gh-pages/js/moment-with-locales.min.js"></script>
+    <script src="vendor/bootstrap-material-datetimepicker-gh-pages/js/bootstrap-material-datetimepicker.js"></script>
+    <script src="vendor/fastclick-master/lib/fastclick.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
